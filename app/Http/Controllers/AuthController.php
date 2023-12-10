@@ -42,6 +42,14 @@ class AuthController extends Controller
 
         return $this->respondWithToken($token);
     }
+    public function logout()
+    {
+        // 使当前的令牌失效
+        JWTAuth::invalidate(JWTAuth::getToken());
+
+        // 返回响应
+        return response()->json(['message' => 'Successfully logged out']);
+    }
 
     protected function respondWithToken($token)
     {
