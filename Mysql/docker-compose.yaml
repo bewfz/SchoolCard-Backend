@@ -1,0 +1,23 @@
+version: '3'
+services:
+  db:
+    image: mysql:8.0
+    # volumes:
+    #   - db_data:/workspaces/SchoolCard-Backend/Mysql/data
+    environment:
+      MYSQL_ROOT_PASSWORD: schoolcard
+      MYSQL_DATABASE: schoolcard
+      MYSQL_USER: schoolcard
+      MYSQL_PASSWORD: schoolcard
+    ports:
+      - "3306:3306"
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    links:
+      - db
+    ports:
+      - "8080:80"
+    environment:
+      MYSQL_USER: schoolcard
+      MYSQL_PASSWORD: schoolcard
+      MYSQL_ROOT_PASSWORD: schoolcard
